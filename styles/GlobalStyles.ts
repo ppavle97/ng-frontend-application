@@ -5,6 +5,8 @@ export const cinzel = Cinzel({ weight: '700', subsets: ['latin'] });
 export const interRegular = Inter({ weight: '400', subsets: ['latin'] });
 export const interBold = Inter({ weight: '700', subsets: ['latin'] });
 
+const backgroundImageUrl = './assets/background.png';
+
 const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 	//========================================================================================================
 	// GENERAL
@@ -20,8 +22,10 @@ const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 	}
 
 	body {
-		background-color: ${({ theme }) => theme.colors.black};
-	}
+		background: url('${backgroundImageUrl}') no-repeat center center fixed; 
+    background-size: cover;
+    margin: 0; 
+    height: 100vh; 
 
 	h1,
 	h2,

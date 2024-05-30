@@ -1,4 +1,4 @@
-// app/layout.tsx
+import Navigation from '../components/Navigation/Navigation';
 import { ClientProviders } from './providers';
 import StyledComponentsRegistry from './registry';
 
@@ -12,7 +12,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body>
 				<StyledComponentsRegistry>
-					<ClientProviders>{children}</ClientProviders>
+					<ClientProviders>
+						<Navigation />
+						{children}
+					</ClientProviders>
 				</StyledComponentsRegistry>
 			</body>
 		</html>
