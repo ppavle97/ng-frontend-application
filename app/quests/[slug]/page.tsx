@@ -1,15 +1,17 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useParams } from 'next/navigation';
 import { NextPage } from 'next';
+import { Content } from '@/components/Content/Content';
 
 const QuestSlugPage: NextPage = () => {
-	const router = useRouter();
-	const { slug } = router.query;
+	const { slug } = useParams();
 
 	return (
-		<div>
+		<Content size='small'>
 			<h1>Quest Detail Page</h1>
 			<p>This is the detail page for the quest with slug: {slug}</p>
-		</div>
+		</Content>
 	);
 };
 

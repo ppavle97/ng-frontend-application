@@ -1,11 +1,12 @@
+import { Content } from '@/components/Content/Content';
 import { NextPage } from 'next';
 
 const QuestsPage: NextPage = () => {
 	return (
-		<div>
+		<Content size='large'>
 			<h1>Quests Page</h1>
-			<p>This is the Quests page.</p>
-		</div>
+			<p>This is the Quests page.</p>{' '}
+		</Content>
 	);
 };
 

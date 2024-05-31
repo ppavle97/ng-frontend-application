@@ -1,7 +1,5 @@
 import { cinzel } from '@/styles/GlobalStyles';
-import { breakpointMax } from '@/styles/breakpoint';
 import styled from 'styled-components';
-import { DefaultTheme } from 'styled-components';
 
 export const NavigationContainer = styled.nav`
 	list-style: none;
@@ -12,9 +10,9 @@ export const NavigationContainer = styled.nav`
 	align-items: center;
 	height: 70px;
 
-	${breakpointMax('sm')(`
-		padding: 0 20px;
-  `)}
+	@media (max-width: 768px) {
+		padding: 0 ${({ theme }) => theme.spacing['m']};
+	}
 
 	.logo {
 		height: 30px;
@@ -38,9 +36,9 @@ export const NavigationContainer = styled.nav`
 			justify-content: center;
 			align-items: center;
 			margin: 0px ${({ theme }) => theme.spacing['2xs']};
-			${breakpointMax('sm')(`
-				margin: 0px 10px;
-			`)}
+			@media (max-width: 768px) {
+				margin: 0px ${({ theme }) => theme.spacing['3xs']};
+			}
 
 			&-icon {
 				height: 20px;
@@ -53,9 +51,9 @@ export const NavigationContainer = styled.nav`
 				font-weight: ${cinzel.style.fontWeight};
 				font-size: 14px;
 				letter-spacing: 4%;
-				${breakpointMax('sm')(`
+				@media (max-width: 768px) {
 					font-size: 12px;
-				`)}
+				}
 			}
 		}
 	}
