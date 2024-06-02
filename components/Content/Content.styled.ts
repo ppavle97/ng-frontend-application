@@ -15,10 +15,19 @@ export const StyledContent = styled.div<StyledContentProps>`
 		width: ${({ size }) => (size === 'large' ? '85%' : '720px')};
 		background-color: ${({ theme }) => theme.colors.black};
 		border: solid 1px ${({ theme }) => theme.colors.gold};
+		overflow-y: scroll;
+
+		&::-webkit-scrollbar {
+			width: 0;
+			height: 0;
+		}
+		-ms-overflow-style: none;
+		scrollbar-width: none;
 
 		@media (max-width: 768px) {
-			width: ${({ size }) => (size === 'large' ? '90%' : '90%')}; // Adjust width for smaller screens
-			min-height: ${({ size }) => (size === 'large' ? '70vh' : '400px')}; // Adjust height for smaller screens
+			width: ${({ size }) => (size === 'large' ? '90%' : '90%')};
+			min-height: ${({ size }) => (size === 'large' ? '70vh' : '500px')};
+			height: ${({ size }) => (size === 'large' ? '' : 'auto')};
 		}
 	}
 `;
