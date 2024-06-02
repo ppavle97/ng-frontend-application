@@ -1,10 +1,11 @@
 'use client';
 import { Content } from '@/components/Content/Content';
 import { NextPage } from 'next';
-import { StyledQuestsList } from './Quests.styled';
-import { QuestItem } from '@/components/QuestItem/QuestItem';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+
+import { StyledQuestsList } from './Quests.styled';
+import { QuestItem } from '@/components/QuestItem/QuestItem';
 
 const fetchQuests = async () => {
 	try {

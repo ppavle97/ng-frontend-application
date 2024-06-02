@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<head>
-				<link rel='manifest' href='/manifest.json' crossOrigin='use-credentials' />
+				<title>NG Frontend Application</title>
 				<meta name='application-name' content='Node Guardians' />
 				<meta name='theme-color' content='#151515' />
 			</head>

@@ -31,9 +31,11 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 	.content {
 		display: flex;
 		flex-direction: column;
+
 		&-head {
 			display: flex;
 		}
+
 		&-left {
 			margin-right: ${({ theme }) => theme.spacing['4xs']};
 			width: 75%;
@@ -43,23 +45,28 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 				font-weight: ${cinzel.style.fontWeight};
 				font-family: ${cinzel.style.fontFamily};
 				font-size: 18px;
+
 				@media (max-width: 576px) {
 					font-size: 16px;
 				}
 			}
+
 			&-properties {
 				display: flex;
 				margin-top: ${({ theme }) => theme.spacing['3xs']};
 				flex-wrap: wrap;
 			}
 		}
+
 		&-right {
 			width: 25%;
 			display: flex;
 			justify-content: flex-end;
+
 			.reward {
 				display: flex;
 				flex-direction: ${({ detailed }) => (detailed ? 'row' : 'column')};
+
 				@media (max-width: 768px) {
 					flex-direction: column;
 				}
@@ -69,10 +76,12 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 					justify-content: flex-end;
 					align-items: space-between;
 					margin: ${({ theme }) => theme.spacing['2xs']} ${({ theme }) => theme.spacing['2xs']} 0 0;
+
 					img {
 						width: 20px;
 						height: 20px;
 					}
+
 					p {
 						font-weight: ${cinzel.style.fontWeight};
 						font-family: ${cinzel.style.fontFamily};
@@ -100,6 +109,7 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 			padding-bottom: ${({ theme }) => theme.spacing['3xl']};
 		}
 	}
+
 	.btn {
 		padding: ${({ theme }) => theme.spacing['3xs']} ${({ theme }) => theme.spacing['m']};
 		border-radius: 10px;
@@ -147,6 +157,7 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 			}
 		}
 	}
+
 	.attribute-box {
 		border: solid 1px ${({ theme }) => theme.colors.grey};
 		padding: 0 ${({ theme }) => theme.spacing['4xs']};

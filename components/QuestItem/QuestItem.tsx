@@ -20,15 +20,8 @@ export const QuestItem = ({ item, detailed }: QuestItemProps) => {
 
 	const difficulty = parseInt(item.difficulty, 10);
 	const totalSwords = 5;
-	const imageSources = [];
 
-	for (let i = 0; i < difficulty; i++) {
-		imageSources.push(swordWhite);
-	}
-
-	for (let i = difficulty; i < totalSwords; i++) {
-		imageSources.push(swordGray);
-	}
+	const imageSources = Array.from({ length: totalSwords }, (_, index) => (index < difficulty ? swordWhite : swordGray));
 
 	const handleOpenDetails = () => {
 		router.push(`/quests/${item.slug}`);

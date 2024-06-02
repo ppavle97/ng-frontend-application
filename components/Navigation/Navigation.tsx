@@ -2,14 +2,13 @@
 import Image from 'next/image';
 import { NavigationContainer } from './Navigation.styled';
 import { useAtom } from 'jotai';
+import { goldAtom, xpAtom } from '../../store/atom';
 
 import logo from './assets/logo.jpeg';
-
 import goldIcon from './assets/gold.png';
 import xpIcon from './assets/xp.png';
 import devider from './assets/devider.png';
 import avatar from './assets/avatar.png';
-import { goldAtom, xpAtom } from '../../store/atom';
 
 const Navigation = () => {
 	const [gold] = useAtom(goldAtom);
