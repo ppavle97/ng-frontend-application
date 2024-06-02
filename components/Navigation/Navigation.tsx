@@ -1,26 +1,32 @@
 'use client';
 import Image from 'next/image';
 import { NavigationContainer } from './Navigation.styled';
+import { useAtom } from 'jotai';
 
 import logo from './assets/logo.jpeg';
-import gold from './assets/gold.png';
-import xp from './assets/xp.png';
+
+import goldIcon from './assets/gold.png';
+import xpIcon from './assets/xp.png';
 import devider from './assets/devider.png';
 import avatar from './assets/avatar.png';
+import { goldAtom, xpAtom } from '../../store/atom';
 
 const Navigation = () => {
+	const [gold] = useAtom(goldAtom);
+	const [xp] = useAtom(xpAtom);
+
 	return (
 		<NavigationContainer>
 			<Image className='logo' src={logo} alt='NG Frontend Application Logo' />
 			<div className='menu'>
 				<div className='menu-item'>
-					<Image className='menu-item-icon' src={gold} alt='NG Frontend Application Menu' />
-					<p>12 023</p>
+					<Image className='menu-item-icon' src={goldIcon} alt='NG Frontend Application Menu' />
+					<p>{gold}</p>
 				</div>
 				<Image className='menu-devider' src={devider} alt='NG Frontend Application Menu' />
 				<div className='menu-item'>
-					<Image className='menu-item-icon' src={xp} alt='NG Frontend Application Menu' />
-					<p>532 023</p>
+					<Image className='menu-item-icon' src={xpIcon} alt='NG Frontend Application Menu' />
+					<p>{xp}</p>
 				</div>
 				<Image className='menu-avatar' src={avatar} alt='NG Frontend Application Menu' />
 			</div>

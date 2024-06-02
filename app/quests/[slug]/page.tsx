@@ -7,9 +7,9 @@ import { QuestItem } from '@/components/QuestItem/QuestItem';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-const fetchQuest = async () => {
+const fetchQuest = async (slug: string | string[]) => {
 	try {
-		const { data } = await axios.get('/api/quest?questSlug=wtf-imps');
+		const { data } = await axios.get(`/api/quest?questSlug=${slug}`);
 		return data;
 	} catch (error) {
 		throw error;
@@ -19,8 +19,9 @@ const fetchQuest = async () => {
 const QuestSlugPage: NextPage = () => {
 	const { slug } = useParams();
 	const { data, error, isLoading } = useQuery({
-		queryKey: ['questSlug'],
-		queryFn: fetchQuest
+		queryKey: ['questSlug', slug],
+		queryFn: () => fetchQuest(slug),
+		enabled: !!slug
 	});
 
 	return (

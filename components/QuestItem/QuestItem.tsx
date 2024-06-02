@@ -2,16 +2,21 @@ import React from 'react';
 import { StyledQuestItem } from './QuestItem.styled';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useAtomValue, useSetAtom } from 'jotai';
+
+import { QuestItemProps } from './types';
+import { airdropRewards, hasAirdroppedSelector } from '../../store/atom';
 
 import swordWhite from './assets/sword-white.png';
 import swordGray from './assets/sword-gray.png';
 import solidity from './assets/solidity.png';
 import gold from './assets/gold.png';
 import xp from './assets/xp.png';
-import { QuestItemProps } from './types';
 
 export const QuestItem = ({ item, detailed }: QuestItemProps) => {
 	const router = useRouter();
+	const airdrop = useSetAtom(airdropRewards);
+	const hasAirdropped = useAtomValue(hasAirdroppedSelector);
 
 	const difficulty = parseInt(item.difficulty, 10);
 	const totalSwords = 5;
@@ -24,12 +29,17 @@ export const QuestItem = ({ item, detailed }: QuestItemProps) => {
 	for (let i = difficulty; i < totalSwords; i++) {
 		imageSources.push(swordGray);
 	}
+
 	const handleOpenDetails = () => {
 		router.push(`/quests/${item.slug}`);
 	};
 
 	const handleBack = () => {
 		router.back();
+	};
+
+	const handleAirdrop = () => {
+		airdrop({ amountOfGold: item.rewards.gold, amountOfXp: item.rewards.expPoints, slug: item.slug });
 	};
 
 	return (
@@ -93,7 +103,9 @@ export const QuestItem = ({ item, detailed }: QuestItemProps) => {
 							<button onClick={handleBack} className='btn'>
 								Go Back
 							</button>
-							<button className='btn'>Airdrop rewards to The Guardian</button>
+							<button onClick={handleAirdrop} className='btn' disabled={hasAirdropped(item.slug)}>
+								Airdrop rewards to The Guardian
+							</button>
 						</div>
 					</>
 				)}

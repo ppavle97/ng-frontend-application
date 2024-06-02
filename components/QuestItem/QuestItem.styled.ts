@@ -123,6 +123,13 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 			cursor: pointer;
 		}
 
+		&:disabled {
+			opacity: 0.4;
+			&:hover {
+				cursor: not-allowed;
+			}
+		}
+
 		&:nth-child(2) {
 			color: ${({ theme }) => theme.colors.black};
 			background-color: ${({ theme }) => theme.colors.gold};
