@@ -30,4 +30,15 @@ export const StyledContent = styled.div<StyledContentProps>`
 			height: ${({ size }) => (size === 'large' ? '' : 'auto')};
 		}
 	}
+
+	& .info {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		p {
+			color: ${({ theme }) => theme.colors.gold};
+		}
+	}
 `;

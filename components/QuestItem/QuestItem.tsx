@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyledQuestItem } from './QuestItem.styled';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import swordWhite from './assets/sword-white.png';
 import swordGray from './assets/sword-gray.png';
@@ -9,8 +10,10 @@ import gold from './assets/gold.png';
 import xp from './assets/xp.png';
 import { QuestItemProps } from './types';
 
-export const QuestItem = ({ detailed }: QuestItemProps) => {
-	let difficulty = 3;
+export const QuestItem = ({ item, detailed }: QuestItemProps) => {
+	const router = useRouter();
+
+	const difficulty = parseInt(item.difficulty, 10);
 	const totalSwords = 5;
 	const imageSources = [];
 
@@ -21,46 +24,59 @@ export const QuestItem = ({ detailed }: QuestItemProps) => {
 	for (let i = difficulty; i < totalSwords; i++) {
 		imageSources.push(swordGray);
 	}
+	const handleOpenDetails = () => {
+		router.push(`/quests/${item.slug}`);
+	};
+
+	const handleBack = () => {
+		router.back();
+	};
+
 	return (
-		<StyledQuestItem detailed={detailed}>
-			<Image
-				src='https://cdn-staging.nodeguardians.com/backend-staging/Delegate_Call_Detection_crop_5d2c9cbe6c/Delegate_Call_Detection_crop_5d2c9cbe6c.webp'
-				className='cover'
-				alt='NG Frontend Application'
-				width={100}
-				height={100}
-			/>
+		<StyledQuestItem onClick={handleOpenDetails} cover={item.cover ? true : false} detailed={detailed}>
+			{item.cover && (
+				<Image src={item.cover} className='cover' alt='NG Frontend Application' width={100} height={100} />
+			)}
 			<div className='content'>
 				<div className='content-head'>
 					<div className='content-left'>
-						<p className='name'>Quest Name Goes Here</p>
+						<p className='name'>{item.title}</p>
 						<div className='content-left-properties'>
 							<div className='tree attribute-box'>
-								<Image src={solidity} className='content-difficulty' alt='Sword' />
-								<p>Solidity</p>
+								<Image
+									src={solidity}
+									className='content-difficulty'
+									alt='NG Frontend Application language'
+									width={100}
+									height={100}
+								/>
+								<p>{item.language.label}</p>
 							</div>
 							<div className='attribute-box'>
 								{imageSources.map((src, index) => (
-									<Image key={index} src={src} className='content-difficulty' alt='Sword' />
+									<Image key={index} src={src} className='content-difficulty' alt='Sword' width={100} height={100} />
 								))}
 							</div>
 							<div className='attribute-box'>
-								<p>Build</p>
-							</div>
-							<div className='attribute-box'>
-								<p>CTF</p>
+								<p>{item.type.label}</p>
 							</div>
 						</div>
 					</div>
 					<div className='content-right'>
 						<div className='reward'>
 							<div className='reward-item'>
-								<Image className='menu-item-icon' src={gold} alt='NG Frontend Application Gold' />
-								<p>14000</p>
+								<Image
+									className='menu-item-icon'
+									src={gold}
+									alt='NG Frontend Application Gold'
+									width={100}
+									height={100}
+								/>
+								<p>{item.rewards.gold}</p>
 							</div>
 							<div className='reward-item'>
-								<Image className='menu-item-icon' src={xp} alt='NG Frontend Application XP' />
-								<p>14000</p>
+								<Image className='menu-item-icon' src={xp} alt='NG Frontend Application XP' width={100} height={100} />
+								<p>{item.rewards.expPoints}</p>
 							</div>
 						</div>
 					</div>
@@ -74,7 +90,9 @@ export const QuestItem = ({ detailed }: QuestItemProps) => {
 							mechanisms.
 						</div>
 						<div className='btn-group'>
-							<button className='btn'>Go Back</button>
+							<button onClick={handleBack} className='btn'>
+								Go Back
+							</button>
 							<button className='btn'>Airdrop rewards to The Guardian</button>
 						</div>
 					</>

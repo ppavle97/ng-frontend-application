@@ -3,15 +3,40 @@ import { Content } from '@/components/Content/Content';
 import { NextPage } from 'next';
 import { StyledQuestsList } from './Quests.styled';
 import { QuestItem } from '@/components/QuestItem/QuestItem';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+
+const fetchQuests = async () => {
+	try {
+		const { data } = await axios.get('/api/quests');
+		return data;
+	} catch (error) {
+		console.error('Error fetching quests:', error);
+		throw error;
+	}
+};
 
 const QuestsPage: NextPage = () => {
-	const arr = [1, 2, 3, 4, 5, 5, 6, 7];
+	const { data, error, isLoading } = useQuery({
+		queryKey: ['quests'],
+		queryFn: fetchQuests
+	});
+
 	return (
 		<Content size='large'>
+			{isLoading && (
+				<div className='info'>
+					<p>Loading...</p>
+				</div>
+			)}
+			{error && (
+				<div className='info'>
+					<p>Error loading quests: {error.message}</p>
+				</div>
+			)}
+
 			<StyledQuestsList>
-				{arr.map((item, index) => {
-					return <QuestItem />;
-				})}
+				{data && data.map((item: any, index: number) => <QuestItem key={index} item={item} />)}
 			</StyledQuestsList>
 		</Content>
 	);

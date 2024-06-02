@@ -11,6 +11,13 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 	color: ${({ theme }) => theme.colors.white};
 	height: ${({ detailed }) => (detailed ? '100%' : '')};
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: ${({ cover }) => (cover ? 'flex-start' : 'center')};
+
+	&:hover {
+		cursor: ${({ detailed }) => (detailed ? '' : 'pointer')};
+	}
 
 	@media (max-width: 576px) {
 		padding: ${({ theme }) => theme.spacing['2xs']};
@@ -24,7 +31,6 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 	.content {
 		display: flex;
 		flex-direction: column;
-
 		&-head {
 			display: flex;
 		}
@@ -63,7 +69,10 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 					justify-content: flex-end;
 					align-items: space-between;
 					margin: ${({ theme }) => theme.spacing['2xs']} ${({ theme }) => theme.spacing['2xs']} 0 0;
-
+					img {
+						width: 20px;
+						height: 20px;
+					}
 					p {
 						font-weight: ${cinzel.style.fontWeight};
 						font-family: ${cinzel.style.fontFamily};
@@ -79,6 +88,8 @@ export const StyledQuestItem = styled.div<StyledQuestItemProps>`
 
 		&-difficulty {
 			margin-right: ${({ theme }) => theme.spacing['5xs']};
+			width: 12px;
+			height: 12px;
 		}
 
 		&-description {
